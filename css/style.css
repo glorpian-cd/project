@@ -6,25 +6,22 @@
 }
 
 body {
-  overflow: hidden; /* отключаем глобальный скролл */
+  overflow: hidden; /* глобальный скролл запрещен */
   transition: background 0.6s, color 0.6s;
   font-family: system-ui, sans-serif;
 }
 
 /* ===== TIMELINE ===== */
 .timeline {
-  position: relative;
   width: 100vw;
   height: 100vh;
-  overflow: hidden; /* никакого нативного scroll */
+  display: flex;
+  scroll-behavior: smooth;
 }
 
-/* ===== EACH ERA ===== */
+/* ===== ERA ===== */
 .era {
-  position: absolute;
-  top: 0;
-  left: 100vw; /* скрыта справа по умолчанию */
-  width: 100vw;
+  flex: 0 0 100vw;
   height: 100vh;
   padding: 100px 60px 60px;
   display: flex;
@@ -32,6 +29,7 @@ body {
   transition: left 0.5s ease, background 0.6s, color 0.6s;
 }
 
+/* ===== CONTENT ===== */
 .era-content {
   display: flex;
   gap: 60px;
@@ -51,19 +49,6 @@ body {
   opacity: 0;
   transform: translateX(40px);
   transition: 0.8s;
-}
-
-/* ===== ACTIVE & POSITIONING ===== */
-.era.active {
-  left: 0;
-}
-
-.era.prev {
-  left: -100vw;
-}
-
-.era.next {
-  left: 100vw;
 }
 
 .era.active .era-image,
@@ -130,36 +115,12 @@ body {
 }
 
 /* ===== THEMES ===== */
-body.theme-arpanet {
-  background: #000;
-  color: #00ff00;
-  font-family: monospace;
-}
-
-body.theme-networks {
-  background: #0b3d2e;
-  color: #e0ffe9;
-}
-
-body.theme-www {
-  background: #e5e5e5;
-  color: #000;
-}
-
-body.theme-web2 {
-  background: #1e90ff;
-  color: #fff;
-}
-
-body.theme-mobile {
-  background: #fff;
-  color: #111;
-}
-
-body.theme-modern {
-  background: #0f172a;
-  color: #e5e7eb;
-}
+body.theme-arpanet { background: #000; color: #00ff00; font-family: monospace; }
+body.theme-networks { background: #0b3d2e; color: #e0ffe9; }
+body.theme-www { background: #e5e5e5; color: #000; }
+body.theme-web2 { background: #1e90ff; color: #fff; }
+body.theme-mobile { background: #fff; color: #111; }
+body.theme-modern { background: #0f172a; color: #e5e7eb; }
 
 /* ===== INTRO ===== */
 .intro {
@@ -171,16 +132,8 @@ body.theme-modern {
   color: #fff;
 }
 
-.intro h1 {
-  font-size: 52px;
-  margin-bottom: 20px;
-}
-
-.intro p {
-  font-size: 20px;
-  margin-bottom: 30px;
-}
-
+.intro h1 { font-size: 52px; margin-bottom: 20px; }
+.intro p { font-size: 20px; margin-bottom: 30px; }
 .start-button {
   padding: 14px 32px;
   border-radius: 30px;
@@ -192,8 +145,7 @@ body.theme-modern {
 
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
-  .era-content {
-    flex-direction: column;
-    text-align: center;
-  }
+  .timeline { position: relative; overflow-x: hidden; }
+  .era { position: absolute; top: 0; left: 100vw; }
+  .era-content { flex-direction: column; text-align: center; }
 }

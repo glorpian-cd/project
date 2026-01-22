@@ -6,6 +6,9 @@ const startButton = document.querySelector('.start-button');
 
 let currentIndex = 0;
 
+/* ===== THEMES ===== */
+const themes = ['arpanet', 'networks', 'www', 'web2', 'mobile', 'modern'];
+
 /* ===== INITIALIZE POSITIONS ===== */
 function updatePositions() {
   eras.forEach((era, i) => {
@@ -20,21 +23,16 @@ function updatePositions() {
   updateTimelineItems();
 }
 
-/* ===== PROGRESS BAR ===== */
 function updateProgress() {
   const percent = (currentIndex / (eras.length - 1)) * 100;
   progressBar.style.width = percent + '%';
 }
 
-/* ===== TOP TIMELINE ITEMS ===== */
 function updateTimelineItems() {
   timelineItems.forEach(item => {
     item.classList.toggle('active', Number(item.dataset.index) === currentIndex);
   });
 }
-
-/* ===== THEMES ===== */
-const themes = ['arpanet', 'networks', 'www', 'web2', 'mobile', 'modern'];
 
 function updateTheme() {
   document.body.className = 'theme-' + themes[currentIndex];
@@ -54,30 +52,29 @@ timelineItems.forEach(item => {
   });
 });
 
-/* ===== DESKTOP WHEEL SCROLL ===== */
-timeline.addEventListener('wheel', (e) => {
-  e.preventDefault();
-  if (e.deltaY > 0 && currentIndex < eras.length - 1) currentIndex++;
-  else if (e.deltaY < 0 && currentIndex > 0) currentIndex--;
-  updatePositions();
-}, { passive: false });
+/* ===== DESKTOP SCROLL ===== */
+const isMobile = window.innerWidth <= 768;
 
-/* ===== MOBILE SWIPE CONTROL ===== */
-let startX = 0;
-timeline.addEventListener('touchstart', e => {
-  startX = e.touches[0].clientX;
-}, { passive: true });
-
-timeline.addEventListener('touchend', e => {
-  const endX = e.changedTouches[0].clientX;
-  const delta = endX - startX;
-  const threshold = 50;
-
-  if (delta < -threshold && currentIndex < eras.length - 1) currentIndex++;
-  if (delta > threshold && currentIndex > 0) currentIndex--;
-
-  updatePositions();
-});
+if (!isMobile) {
+  timeline.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    if (e.deltaY > 0 && currentIndex < eras.length - 1) currentIndex++;
+    else if (e.deltaY < 0 && currentIndex > 0) currentIndex--;
+    const target = eras[currentIndex];
+    timeline.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
+  }, { passive: false });
+} else {
+  /* ===== MOBILE SWIPE ===== */
+  let startX = 0;
+  timeline.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  timeline.addEventListener('touchend', e => {
+    const delta = e.changedTouches[0].clientX - startX;
+    const threshold = 50;
+    if (delta < -threshold && currentIndex < eras.length - 1) currentIndex++;
+    if (delta > threshold && currentIndex > 0) currentIndex--;
+    updatePositions();
+  });
+}
 
 /* ===== INITIALIZE ===== */
 updatePositions();
