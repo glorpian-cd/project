@@ -5,11 +5,9 @@ const progressBar = document.querySelector('.progress-bar');
 const startButton = document.querySelector('.start-button');
 
 let currentIndex = 0;
-
-/* ===== THEMES ===== */
 const themes = ['arpanet', 'networks', 'www', 'web2', 'mobile', 'modern'];
 
-/* ===== INITIALIZE POSITIONS ===== */
+/* ===== Инициализация позиций ===== */
 function updatePositions() {
   eras.forEach((era, i) => {
     era.classList.remove('active', 'prev', 'next');
@@ -23,28 +21,31 @@ function updatePositions() {
   updateTimelineItems();
 }
 
+/* ===== Прогресс ===== */
 function updateProgress() {
   const percent = (currentIndex / (eras.length - 1)) * 100;
   progressBar.style.width = percent + '%';
 }
 
+/* ===== Верхняя шкала ===== */
 function updateTimelineItems() {
   timelineItems.forEach(item => {
     item.classList.toggle('active', Number(item.dataset.index) === currentIndex);
   });
 }
 
+/* ===== Темы ===== */
 function updateTheme() {
   document.body.className = 'theme-' + themes[currentIndex];
 }
 
-/* ===== START BUTTON ===== */
+/* ===== Кнопка старт ===== */
 startButton?.addEventListener('click', () => {
   currentIndex = 0;
   updatePositions();
 });
 
-/* ===== TOP TIMELINE CLICK ===== */
+/* ===== Клик по верхней шкале ===== */
 timelineItems.forEach(item => {
   item.addEventListener('click', () => {
     currentIndex = Number(item.dataset.index);
@@ -52,9 +53,12 @@ timelineItems.forEach(item => {
   });
 });
 
-/* ===== MOBILE SWIPE ===== */
+/* ===== Свайп для мобильных ===== */
 let startX = 0;
-timeline.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+timeline.addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+}, { passive: true });
+
 timeline.addEventListener('touchend', e => {
   const delta = e.changedTouches[0].clientX - startX;
   const threshold = 50;
@@ -63,13 +67,5 @@ timeline.addEventListener('touchend', e => {
   updatePositions();
 });
 
-/* ===== DESKTOP WHEEL ===== */
-timeline.addEventListener('wheel', e => {
-  e.preventDefault();
-  if (e.deltaY > 0 && currentIndex < eras.length - 1) currentIndex++;
-  else if (e.deltaY < 0 && currentIndex > 0) currentIndex--;
-  updatePositions();
-}, { passive: false });
-
-/* ===== INITIALIZE ===== */
+/* ===== Инициализация ===== */
 updatePositions();
