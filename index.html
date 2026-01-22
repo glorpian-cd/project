@@ -2,144 +2,119 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>История развития интернета</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>История Интернета</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="theme-arpanet">
+<body>
 
-  <!-- ===== ВЕРХНЯЯ ШКАЛА ===== -->
+  <!-- ===== TOP TIMELINE ===== -->
   <div class="top-timeline">
-    <div class="timeline-item" data-target="arpanet">1960–1970</div>
-    <div class="timeline-item" data-target="networks">1980–1990</div>
-    <div class="timeline-item" data-target="www">1990–2000</div>
-    <div class="timeline-item" data-target="web2">2000–2010</div>
-    <div class="timeline-item" data-target="mobile">2010–2020</div>
-    <div class="timeline-item" data-target="modern">2020–н.в.</div>
+    <div class="timeline-item" data-index="0">ARPANET</div>
+    <div class="timeline-item" data-index="1">Сети</div>
+    <div class="timeline-item" data-index="2">WWW</div>
+    <div class="timeline-item" data-index="3">Web 2.0</div>
+    <div class="timeline-item" data-index="4">Мобильный интернет</div>
+    <div class="timeline-item" data-index="5">Современный интернет</div>
   </div>
 
-  <!-- ===== ПРОГРЕСС-БАР ===== -->
+  <!-- ===== PROGRESS BAR ===== -->
   <div class="progress-container">
     <div class="progress-bar"></div>
   </div>
 
-  <!-- ===== ЛЕНТА ВРЕМЕНИ ===== -->
+  <!-- ===== TIMELINE ===== -->
   <div class="timeline">
 
-    <!-- ===== СТАРТОВЫЙ ЭКРАН ===== -->
+    <!-- ===== INTRO SCREEN ===== -->
     <section class="era intro">
-      <div class="intro-content">
-        <h1>История развития интернета</h1>
-        <p>
-          Этот сайт показывает, как интернет развивался от первых экспериментов
-          в компьютерных сетях до современного цифрового мира.
-          Используйте временную шкалу или пролистывайте вправо.
-        </p>
-        <button class="start-button">Начать путешествие</button>
+      <div>
+        <h1>История Интернета</h1>
+        <p>Прокрути или свайпни, чтобы узнать, как развивался интернет</p>
+        <button class="start-button">Начать</button>
       </div>
     </section>
 
-    <!-- ===== ARPANET ===== -->
+    <!-- ===== ERA 1: ARPANET ===== -->
     <section class="era" data-era="arpanet">
       <div class="era-content">
         <div class="era-image">
-          <img src="images/arpanet.jpg" alt="Схема сети ARPANET">
+          <img src="images/arpanet.jpg" alt="ARPANET">
         </div>
         <div class="era-text">
-          <h1>ARPANET (1960–1970)</h1>
-          <p>
-            ARPANET — первая компьютерная сеть, созданная в США для связи
-            университетов и научных центров. Она использовала передачу данных
-            пакетами и стала основой для будущего интернета.
-          </p>
+          <h1>ARPANET (1969)</h1>
+          <p>Первая компьютерная сеть, которая стала основой для будущего интернета.</p>
         </div>
       </div>
     </section>
 
-    <!-- ===== ПЕРВЫЕ СЕТИ ===== -->
+    <!-- ===== ERA 2: Сети ===== -->
     <section class="era" data-era="networks">
       <div class="era-content">
         <div class="era-image">
-          <img src="images/networks.jpg" alt="Ранние компьютерные сети">
+          <img src="images/networks.jpg" alt="Сети">
         </div>
         <div class="era-text">
-          <h1>Первые сети (1980–1990)</h1>
-          <p>
-            В 1980-х годах начали активно развиваться компьютерные сети,
-            использующие протокол TCP/IP. Они позволили объединять
-            компьютеры в единую глобальную сеть.
-          </p>
+          <h1>Развитие сетей (1970-1980)</h1>
+          <p>Появление TCP/IP и расширение сетевой инфраструктуры.</p>
         </div>
       </div>
     </section>
 
-    <!-- ===== WWW ===== -->
+    <!-- ===== ERA 3: WWW ===== -->
     <section class="era" data-era="www">
       <div class="era-content">
         <div class="era-image">
-          <img src="images/www.jpg" alt="Первые веб-браузеры">
+          <img src="images/www.jpg" alt="WWW">
         </div>
         <div class="era-text">
-          <h1>World Wide Web (1990–2000)</h1>
-          <p>
-            Изобретение World Wide Web сделало интернет доступным для обычных людей.
-            Появились HTML, HTTP и первые браузеры, позволяющие просматривать сайты.
-          </p>
+          <h1>WWW (1990-е)</h1>
+          <p>Появление Всемирной паутины и первых браузеров.</p>
         </div>
       </div>
     </section>
 
-    <!-- ===== WEB 2.0 ===== -->
+    <!-- ===== ERA 4: Web 2.0 ===== -->
     <section class="era" data-era="web2">
       <div class="era-content">
         <div class="era-image">
-          <img src="images/web2.jpg" alt="Социальные сети и Web 2.0">
+          <img src="images/web2.jpg" alt="Web 2.0">
         </div>
         <div class="era-text">
-          <h1>Web 2.0 (2000–2010)</h1>
-          <p>
-            Интернет стал интерактивным. Пользователи начали создавать контент:
-            социальные сети, блоги, видеохостинги и онлайн-сервисы стали частью
-            повседневной жизни.
-          </p>
+          <h1>Web 2.0 (2000-е)</h1>
+          <p>Социальные сети, интерактивные сайты, пользовательский контент.</p>
         </div>
       </div>
     </section>
 
-    <!-- ===== МОБИЛЬНЫЙ ИНТЕРНЕТ ===== -->
+    <!-- ===== ERA 5: Мобильный интернет ===== -->
     <section class="era" data-era="mobile">
       <div class="era-content">
         <div class="era-image">
-          <img src="images/mobile.jpg" alt="Мобильный интернет и смартфоны">
+          <img src="images/mobile.jpg" alt="Мобильный интернет">
         </div>
         <div class="era-text">
-          <h1>Мобильный интернет (2010–2020)</h1>
-          <p>
-            Распространение смартфонов привело к появлению мобильных приложений
-            и адаптивных сайтов. Интернет стал доступен в любом месте и в любое время.
-          </p>
+          <h1>Мобильный интернет (2010-е)</h1>
+          <p>Широкое распространение смартфонов и мобильного доступа в интернет.</p>
         </div>
       </div>
     </section>
 
-    <!-- ===== СОВРЕМЕННЫЙ ИНТЕРНЕТ ===== -->
+    <!-- ===== ERA 6: Современный интернет ===== -->
     <section class="era" data-era="modern">
       <div class="era-content">
         <div class="era-image">
-          <img src="images/modern.jpg" alt="Современные интернет-технологии">
+          <img src="images/modern.jpg" alt="Современный интернет">
         </div>
         <div class="era-text">
-          <h1>Современный интернет (2020–н.в.)</h1>
-          <p>
-            Сегодня интернет включает облачные технологии, искусственный интеллект,
-            стриминг, онлайн-образование и умные устройства. Он играет ключевую роль
-            в жизни общества.
-          </p>
+          <h1>Современный интернет (2020-е)</h1>
+          <p>Облачные сервисы, быстрый интернет, IoT и глобальная интеграция.</p>
         </div>
       </div>
     </section>
 
   </div>
 
-  <script src="js/script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -6,60 +6,32 @@
 }
 
 body {
-  overflow: hidden;
+  overflow: hidden; /* отключаем глобальный скролл */
   transition: background 0.6s, color 0.6s;
   font-family: system-ui, sans-serif;
 }
 
 /* ===== TIMELINE ===== */
 .timeline {
-  display: flex;
+  position: relative;
   width: 100vw;
   height: 100vh;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
+  overflow: hidden; /* никакого нативного scroll */
 }
 
+/* ===== EACH ERA ===== */
 .era {
-  min-width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 100vw; /* скрыта справа по умолчанию */
+  width: 100vw;
   height: 100vh;
   padding: 100px 60px 60px;
   display: flex;
   align-items: center;
-  transition: background 0.6s, color 0.6s;
+  transition: left 0.5s ease, background 0.6s, color 0.6s;
 }
 
-/* ===== INTRO ===== */
-.intro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: #fff;
-}
-
-.intro h1 {
-  font-size: 52px;
-  margin-bottom: 20px;
-}
-
-.intro p {
-  font-size: 20px;
-  margin-bottom: 30px;
-}
-
-.start-button {
-  padding: 14px 32px;
-  border-radius: 30px;
-  border: none;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* ===== CONTENT ===== */
 .era-content {
   display: flex;
   gap: 60px;
@@ -79,6 +51,19 @@ body {
   opacity: 0;
   transform: translateX(40px);
   transition: 0.8s;
+}
+
+/* ===== ACTIVE & POSITIONING ===== */
+.era.active {
+  left: 0;
+}
+
+.era.prev {
+  left: -100vw;
+}
+
+.era.next {
+  left: 100vw;
 }
 
 .era.active .era-image,
@@ -176,27 +161,39 @@ body.theme-modern {
   color: #e5e7eb;
 }
 
-/* ===== MOBILE: STRICT SLIDES ===== */
-@media (max-width: 768px) {
-  .timeline {
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-snap-stop: always;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .era {
-    scroll-snap-align: start;
-  }
-}
-
-.timeline {
-  overflow-x: hidden;
+/* ===== INTRO ===== */
+.intro {
   display: flex;
-  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
 }
 
-.era {
-  flex: 0 0 100vw;
-  height: 100vh;
+.intro h1 {
+  font-size: 52px;
+  margin-bottom: 20px;
+}
+
+.intro p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.start-button {
+  padding: 14px 32px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .era-content {
+    flex-direction: column;
+    text-align: center;
+  }
 }
