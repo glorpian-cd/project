@@ -64,20 +64,3 @@ timelineItems.forEach(item => {
 startButton?.addEventListener('click', () => {
   timeline.scrollTo({ left: eras[0].offsetLeft, behavior: 'smooth' });
 });
-
-/* ===== MOBILE: FINAL FIXATION ===== */
-let snapTimeout = null;
-
-timeline.addEventListener('scroll', () => {
-  clearTimeout(snapTimeout);
-
-  snapTimeout = setTimeout(() => {
-    const width = timeline.clientWidth;
-    const index = Math.round(timeline.scrollLeft / width);
-
-    timeline.scrollTo({
-      left: index * width,
-      behavior: 'smooth'
-    });
-  }, 140);
-});

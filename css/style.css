@@ -176,14 +176,16 @@ body.theme-modern {
   color: #e5e7eb;
 }
 
-/* ===== MOBILE ===== */
+/* ===== MOBILE: STRICT SLIDES ===== */
 @media (max-width: 768px) {
-  .era-content {
-    flex-direction: column;
-    text-align: center;
+  .timeline {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-snap-stop: always;
+    -webkit-overflow-scrolling: touch;
   }
 
-  .timeline {
-    scroll-snap-type: none;
+  .era {
+    scroll-snap-align: start;
   }
 }
