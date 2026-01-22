@@ -4,68 +4,87 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  height: 100%;
+  overflow: hidden;
   font-family: system-ui, sans-serif;
-  overflow: hidden;
-  transition: background 0.6s, color 0.6s;
 }
 
-/* THEMES */
-body.intro { background: #1e3c72; color: white; }
-body.era-1 { background: #000; color: #00ff00; }
-body.era-2 { background: #0b3d2e; color: #e0ffe9; }
-body.era-3 { background: #e5e5e5; color: #000; }
-body.era-4 { background: #1e90ff; color: #fff; }
-body.era-5 { background: #ffffff; color: #111; }
-body.era-6 { background: #0f172a; color: #e5e7eb; }
-
-.timeline-wrapper {
-  height: 100vh;
-  overflow: hidden;
-}
-
-.timeline-scale {
-  display: flex;
-  justify-content: space-around;
-  padding: 10px 0;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-}
-
-.year {
-  font-size: 12px;
-  opacity: 0.4;
-}
-
-.year.active {
-  opacity: 1;
-  font-weight: bold;
-}
-
+/* ===== SCROLL CONTAINER ===== */
 .timeline {
-  display: flex;
-  height: calc(100vh - 40px);
-  overflow-x: scroll;
-  scroll-behavior: smooth;
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
 }
 
+/* ===== ERA ===== */
 .era {
-  min-width: 100vw;
-  padding: 40px 24px;
-}
-
-.intro {
+  height: 100vh;
+  scroll-snap-align: start;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 40px;
+}
+
+/* ===== CONTENT ===== */
+.content {
+  max-width: 600px;
   text-align: center;
 }
 
+h1 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* ===== INTRO ===== */
+.intro {
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
+}
+
 #startBtn {
-  margin-top: 20px;
-  padding: 12px 28px;
+  margin-top: 24px;
+  padding: 14px 32px;
   border-radius: 30px;
   border: none;
   font-size: 16px;
+  font-weight: bold;
+}
+
+/* ===== THEMES PER ERA ===== */
+.era[data-theme="arpanet"] {
+  background: #000;
+  color: #00ff00;
+}
+
+.era[data-theme="networks"] {
+  background: #0b3d2e;
+  color: #e0ffe9;
+}
+
+.era[data-theme="www"] {
+  background: #e5e5e5;
+  color: #000;
+}
+
+.era[data-theme="web2"] {
+  background: #1e90ff;
+  color: #fff;
+}
+
+.era[data-theme="mobile"] {
+  background: #ffffff;
+  color: #111;
+}
+
+.era[data-theme="modern"] {
+  background: #0f172a;
+  color: #e5e7eb;
 }
