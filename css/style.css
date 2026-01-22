@@ -1,0 +1,234 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  transition: background 0.6s, color 0.6s;
+  font-family: system-ui, sans-serif;
+}
+
+.timeline {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+}
+
+.era {
+  min-width: 100vw;
+  height: 100vh;
+  padding: 100px 60px 60px 60px;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  transition: background 0.6s, color 0.6s;
+}
+
+.intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+}
+
+.intro-content {
+  max-width: 700px;
+}
+
+.intro h1 {
+  font-size: 56px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+}
+
+.intro p {
+  font-size: 22px;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.start-button {
+  padding: 14px 32px;
+  font-size: 16px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  background: #ffdd57;
+  color: #000;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.start-button:hover {
+  transform: scale(1.05);
+  opacity: 0.85;
+}
+
+.era-content {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  width: 100%;
+}
+
+.era-image {
+  flex: 1;
+  max-width: 45%;
+}
+
+.era-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  transition: transform 0.5s ease;
+}
+
+.era-image img:hover {
+  transform: scale(1.03);
+}
+
+.era-text {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px 30px;
+  border-radius: 16px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  transition: opacity 0.8s ease, transform 0.8s ease, box-shadow 0.5s ease;
+}
+
+.era h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+}
+
+.era p {
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.era-image,
+.era-text {
+  opacity: 0;
+  transform: translateX(0);
+}
+
+.era-image {
+  transform: translateX(-40px);
+}
+
+.era-text {
+  transform: translateX(40px);
+}
+
+.era.active .era-image,
+.era.active .era-text {
+  opacity: 1;
+  transform: translateX(0);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 900px) {
+  .era-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .era-image {
+    max-width: 100%;
+  }
+}
+
+.top-timeline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.timeline-item {
+  cursor: pointer;
+  font-size: 14px;
+  opacity: 0.6;
+  transition: opacity 0.3s, transform 0.3s, color 0.3s, text-shadow 0.3s;
+  white-space: nowrap;
+}
+
+.timeline-item.active {
+  opacity: 1;
+  transform: scale(1.3);
+  font-weight: bold;
+  color: #ffdd57;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
+
+.progress-container {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 999;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #ffdd57, #1e90ff);
+  transition: width 0.2s ease-out;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+body.theme-arpanet {
+  background: #000;
+  color: #00ff00;
+  font-family: "Courier New", monospace;
+}
+
+body.theme-networks {
+  background: #0b3d2e;
+  color: #e0ffe9;
+  font-family: monospace;
+}
+
+body.theme-www {
+  background: #e5e5e5;
+  color: #000;
+  font-family: Arial, sans-serif;
+}
+
+body.theme-web2 {
+  background: #1e90ff;
+  color: #fff;
+  font-family: Verdana, sans-serif;
+}
+
+body.theme-mobile {
+  background: #fff;
+  color: #111;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body.theme-modern {
+  background: #0f172a;
+  color: #e5e7eb;
+  font-family: system-ui, sans-serif;
+}
