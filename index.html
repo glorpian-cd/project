@@ -3,61 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>История интернета</title>
+  <title>История Интернета</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="timeline-wrapper">
-  <div class="timeline-scale">
-    <div class="year active">1960</div>
-    <div class="year">1970</div>
-    <div class="year">1980</div>
-    <div class="year">1990</div>
-    <div class="year">2000</div>
-    <div class="year">2010</div>
-    <div class="year">2020</div>
+  <!-- ===== TOP TIMELINE ===== -->
+  <div class="top-timeline">
+    <div class="timeline-item" data-index="0">ARPANET</div>
+    <div class="timeline-item" data-index="1">Сети</div>
+    <div class="timeline-item" data-index="2">WWW</div>
+    <div class="timeline-item" data-index="3">Web 2.0</div>
+    <div class="timeline-item" data-index="4">Мобильный</div>
+    <div class="timeline-item" data-index="5">Современный</div>
   </div>
 
+  <!-- ===== PROGRESS BAR ===== -->
+  <div class="progress-container">
+    <div class="progress-bar"></div>
+  </div>
+
+  <!-- ===== TIMELINE ===== -->
   <div class="timeline">
-    <section class="era intro active">
-      <h1>История интернета</h1>
-      <p>Проведи пальцем вправо, чтобы начать путешествие</p>
-      <button id="startBtn">Начать</button>
+
+    <!-- ===== INTRO SCREEN ===== -->
+    <section class="era intro">
+      <div>
+        <h1>Добро пожаловать в историю интернета</h1>
+        <p>Свайпни вправо или нажми «Начать», чтобы пройти по основным эпохам развития сети</p>
+        <button class="start-button">Начать</button>
+      </div>
     </section>
 
-    <section class="era">
-      <h2>ARPANET</h2>
-      <p>Первая компьютерная сеть, созданная в США в 1969 году.</p>
+    <!-- ===== ERA 1: ARPANET ===== -->
+    <section class="era" data-era="arpanet">
+      <div class="era-content">
+        <div class="era-image">
+          <img src="images/arpanet.jpg" alt="ARPANET">
+        </div>
+        <div class="era-text">
+          <h1>ARPANET (1969)</h1>
+          <p>Первая компьютерная сеть, которая стала основой для будущего интернета.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="era">
-      <h2>Развитие сетей</h2>
-      <p>В 1970–80-е годы появились TCP/IP и первые глобальные сети.</p>
+    <!-- ===== ERA 2: Сети ===== -->
+    <section class="era" data-era="networks">
+      <div class="era-content">
+        <div class="era-image">
+          <img src="images/networks.jpg" alt="Сети">
+        </div>
+        <div class="era-text">
+          <h1>Развитие сетей (1970-1980)</h1>
+          <p>Появление TCP/IP и расширение сетевой инфраструктуры.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="era">
-      <h2>WWW</h2>
-      <p>В 1991 году Тим Бернерс-Ли создал Всемирную паутину.</p>
+    <!-- ===== ERA 3: WWW ===== -->
+    <section class="era" data-era="www">
+      <div class="era-content">
+        <div class="era-image">
+          <img src="images/www.jpg" alt="WWW">
+        </div>
+        <div class="era-text">
+          <h1>WWW (1990-е)</h1>
+          <p>Появление Всемирной паутины и первых браузеров.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="era">
-      <h2>Web 2.0</h2>
-      <p>Интерактивные сайты, соцсети и пользовательский контент.</p>
+    <!-- ===== ERA 4: Web 2.0 ===== -->
+    <section class="era" data-era="web2">
+      <div class="era-content">
+        <div class="era-image">
+          <img src="images/web2.jpg" alt="Web 2.0">
+        </div>
+        <div class="era-text">
+          <h1>Web 2.0 (2000-е)</h1>
+          <p>Социальные сети, интерактивные сайты, пользовательский контент.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="era">
-      <h2>Мобильный интернет</h2>
-      <p>Смартфоны сделали интернет доступным всегда и везде.</p>
+    <!-- ===== ERA 5: Мобильный интернет ===== -->
+    <section class="era" data-era="mobile">
+      <div class="era-content">
+        <div class="era-image">
+          <img src="images/mobile.jpg" alt="Мобильный интернет">
+        </div>
+        <div class="era-text">
+          <h1>Мобильный интернет (2010-е)</h1>
+          <p>Широкое распространение смартфонов и мобильного доступа в интернет.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="era">
-      <h2>Современность</h2>
-      <p>ИИ, облака, стриминг и глобальные сервисы.</p>
+    <!-- ===== ERA 6: Современный интернет ===== -->
+    <section class="era" data-era="modern">
+      <div class="era-content">
+        <div class="era-image">
+          <img src="images/modern.jpg" alt="Современный интернет">
+        </div>
+        <div class="era-text">
+          <h1>Современный интернет (2020-е)</h1>
+          <p>Облачные сервисы, быстрый интернет, IoT и глобальная интеграция.</p>
+        </div>
+      </div>
     </section>
+
   </div>
-</div>
 
-<script src="js/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
