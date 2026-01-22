@@ -188,14 +188,3 @@ body.theme-modern {
     scroll-snap-align: start;
   }
 }
-
-.timeline {
-  overflow-x: hidden;   
-  display: flex;
-  width: 100vw;
-}
-
-.era {
-  flex: 0 0 100vw;
-  height: 100vh;
-}
