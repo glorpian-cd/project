@@ -97,3 +97,40 @@ if (startButton) {
     }
   });
 }
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+timeline.addEventListener('touchstart', (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+timeline.addEventListener('touchend', (e) => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+});
+
+function handleSwipe() {
+  const swipeDistance = touchStartX - touchEndX;
+
+  if (Math.abs(swipeDistance) < 50) return;
+
+  const currentIndex = Math.round(
+    timeline.scrollLeft / timeline.clientWidth
+  );
+
+  let targetIndex = currentIndex;
+
+  if (swipeDistance > 0) {
+    targetIndex += 1; // свайп влево → следующая эпоха
+  } else {
+    targetIndex -= 1; // свайп вправо → предыдущая эпоха
+  }
+
+  targetIndex = Math.max(0, Math.min(targetIndex, timeline.children.length - 1));
+
+  timeline.scrollTo({
+    left: targetIndex * timeline.clientWidth,
+    behavior: 'smooth'
+  });
+}

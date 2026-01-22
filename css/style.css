@@ -232,3 +232,16 @@ body.theme-modern {
   color: #e5e7eb;
   font-family: system-ui, sans-serif;
 }
+
+@media (max-width: 768px) {
+  .timeline {
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: auto; 
+  }
+
+  .era {
+    scroll-snap-align: center;
+  }
+}
