@@ -64,3 +64,39 @@ timelineItems.forEach(item => {
 startButton?.addEventListener('click', () => {
   timeline.scrollTo({ left: eras[0].offsetLeft, behavior: 'smooth' });
 });
+
+/* ===== MOBILE: CONTROLLED SWIPE ===== */
+
+let currentIndex = 0;
+let startX = 0;
+let isSwiping = false;
+
+const screens = document.querySelectorAll('.era');
+const maxIndex = screens.length - 1;
+
+timeline.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+  isSwiping = true;
+}, { passive: true });
+
+timeline.addEventListener('touchend', (e) => {
+  if (!isSwiping) return;
+
+  const endX = e.changedTouches[0].clientX;
+  const deltaX = endX - startX;
+
+  const threshold = 50; 
+
+  if (deltaX < -threshold && currentIndex < maxIndex) {
+    currentIndex++;
+  } else if (deltaX > threshold && currentIndex > 0) {
+    currentIndex--;
+  }
+
+  timeline.scrollTo({
+    left: currentIndex * timeline.clientWidth,
+    behavior: 'smooth'
+  });
+
+  isSwiping = false;
+});
