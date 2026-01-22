@@ -1,151 +1,90 @@
-/* ===== RESET ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
+html, body {
+  height: 100%;
   overflow: hidden;
-  transition: background 0.6s, color 0.6s;
   font-family: system-ui, sans-serif;
 }
 
-/* ===== TIMELINE ===== */
+/* ===== SCROLL CONTAINER ===== */
 .timeline {
-  position: relative;
-  width: 100vw;
   height: 100vh;
-  overflow: hidden; /* полностью кастомный скролл */
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
 }
 
-/* ===== EACH ERA ===== */
+/* ===== ERA ===== */
 .era {
-  position: absolute;
-  top: 0;
-  left: 100vw; /* все эпохи скрыты справа */
-  width: 100vw;
   height: 100vh;
-  padding: 100px 40px 40px;
+  scroll-snap-align: start;
   display: flex;
+  justify-content: center;
   align-items: center;
-  transition: left 0.5s ease, background 0.6s, color 0.6s;
+  padding: 40px;
+  transition: background 0.5s, color 0.5s;
 }
 
-.era-content {
-  display: flex;
-  gap: 40px;
-  width: 100%;
-  align-items: center;
+.content {
+  max-width: 600px;
+  text-align: center;
 }
 
-.era-image {
-  flex: 1;
-  opacity: 0;
-  transform: translateX(-40px);
-  transition: 0.8s;
-}
-
-.era-text {
-  flex: 1;
-  opacity: 0;
-  transform: translateX(40px);
-  transition: 0.8s;
-}
-
-.era.active .era-image,
-.era.active .era-text {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.era h1 {
-  font-size: 36px;
+h1 {
+  font-size: 32px;
   margin-bottom: 16px;
 }
 
-.era p {
+p {
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
-
-.era-image img {
-  width: 100%;
-  border-radius: 14px;
-}
-
-/* ===== TOP TIMELINE ===== */
-.top-timeline {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  align-items: center;
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-}
-
-.timeline-item {
-  cursor: pointer;
-  opacity: 0.5;
-  transition: 0.3s;
-}
-
-.timeline-item.active {
-  opacity: 1;
-  transform: scale(1.2);
-  font-weight: bold;
-}
-
-/* ===== PROGRESS ===== */
-.progress-container {
-  position: fixed;
-  top: 50px;
-  width: 100%;
-  height: 6px;
-  background: rgba(255,255,255,0.2);
-  z-index: 999;
-}
-
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  transition: width 0.2s;
-}
-
-/* ===== THEMES ===== */
-body.theme-arpanet { background: #000; color: #00ff00; font-family: monospace; }
-body.theme-networks { background: #0b3d2e; color: #e0ffe9; }
-body.theme-www { background: #e5e5e5; color: #000; }
-body.theme-web2 { background: #1e90ff; color: #fff; }
-body.theme-mobile { background: #fff; color: #111; }
-body.theme-modern { background: #0f172a; color: #e5e7eb; }
 
 /* ===== INTRO ===== */
 .intro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: #fff;
+  color: white;
 }
 
-.intro h1 { font-size: 48px; margin-bottom: 16px; }
-.intro p { font-size: 18px; margin-bottom: 24px; }
-.start-button {
-  padding: 12px 28px;
+#startBtn {
+  margin-top: 24px;
+  padding: 14px 32px;
   border-radius: 30px;
   border: none;
   font-size: 16px;
   font-weight: bold;
-  cursor: pointer;
 }
 
-/* ===== MOBILE ===== */
-@media (max-width: 768px) {
-  .era-content { flex-direction: column; text-align: center; }
+/* ===== THEMES ===== */
+body.theme-arpanet {
+  background: #000;
+  color: #00ff00;
+}
+
+body.theme-networks {
+  background: #0b3d2e;
+  color: #e0ffe9;
+}
+
+body.theme-www {
+  background: #e5e5e5;
+  color: #000;
+}
+
+body.theme-web2 {
+  background: #1e90ff;
+  color: #fff;
+}
+
+body.theme-mobile {
+  background: #ffffff;
+  color: #111;
+}
+
+body.theme-modern {
+  background: #0f172a;
+  color: #e5e7eb;
 }
