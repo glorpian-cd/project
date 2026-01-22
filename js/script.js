@@ -1,102 +1,83 @@
 const timeline = document.querySelector('.timeline');
-const eras = document.querySelectorAll('.era:not(.intro)');
+const eras = document.querySelectorAll('.era');
 const timelineItems = document.querySelectorAll('.timeline-item');
 const progressBar = document.querySelector('.progress-bar');
 const startButton = document.querySelector('.start-button');
 
-/* ===== DESKTOP WHEEL ===== */
-timeline.addEventListener('wheel', (e) => {
-  e.preventDefault();
-  timeline.scrollLeft += e.deltaY;
-}, { passive: false });
+let currentIndex = 0;
+
+/* ===== INITIALIZE POSITIONS ===== */
+function updatePositions() {
+  eras.forEach((era, i) => {
+    era.classList.remove('active', 'prev', 'next');
+    if (i === currentIndex) era.classList.add('active');
+    else if (i === currentIndex - 1) era.classList.add('prev');
+    else if (i === currentIndex + 1) era.classList.add('next');
+  });
+
+  updateProgress();
+  updateTheme();
+  updateTimelineItems();
+}
 
 /* ===== PROGRESS BAR ===== */
 function updateProgress() {
-  const max = timeline.scrollWidth - timeline.clientWidth;
-  progressBar.style.width = (timeline.scrollLeft / max) * 100 + '%';
+  const percent = (currentIndex / (eras.length - 1)) * 100;
+  progressBar.style.width = percent + '%';
 }
-timeline.addEventListener('scroll', updateProgress);
 
-/* ===== COLORS ===== */
-const themeColors = {
-  arpanet: ['#00ff00', '#00aa00'],
-  networks: ['#e0ffe9', '#0bff88'],
-  www: ['#ccc', '#888'],
-  web2: ['#1e90ff', '#00bfff'],
-  mobile: ['#ff7f50', '#ffdd57'],
-  modern: ['#0f172a', '#3b82f6']
-};
-
-/* ===== OBSERVER ===== */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const era = entry.target.dataset.era;
-      document.body.className = 'theme-' + era;
-
-      eras.forEach(e => e.classList.remove('active'));
-      entry.target.classList.add('active');
-
-      timelineItems.forEach(item => {
-        item.classList.toggle('active', item.dataset.target === era);
-        if (item.dataset.target === era) {
-          item.style.color = themeColors[era][1];
-        }
-      });
-
-      progressBar.style.background =
-        `linear-gradient(90deg, ${themeColors[era][0]}, ${themeColors[era][1]})`;
-    }
+/* ===== TOP TIMELINE ITEMS ===== */
+function updateTimelineItems() {
+  timelineItems.forEach(item => {
+    item.classList.toggle('active', Number(item.dataset.index) === currentIndex);
   });
-}, { threshold: 0.6 });
+}
 
-eras.forEach(e => observer.observe(e));
+/* ===== THEMES ===== */
+const themes = ['arpanet', 'networks', 'www', 'web2', 'mobile', 'modern'];
+
+function updateTheme() {
+  document.body.className = 'theme-' + themes[currentIndex];
+}
+
+/* ===== START BUTTON ===== */
+startButton?.addEventListener('click', () => {
+  currentIndex = 0;
+  updatePositions();
+});
 
 /* ===== TOP TIMELINE CLICK ===== */
 timelineItems.forEach(item => {
   item.addEventListener('click', () => {
-    const target = document.querySelector(`.era[data-era="${item.dataset.target}"]`);
-    timeline.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
+    currentIndex = Number(item.dataset.index);
+    updatePositions();
   });
 });
 
-/* ===== START BUTTON ===== */
-startButton?.addEventListener('click', () => {
-  timeline.scrollTo({ left: eras[0].offsetLeft, behavior: 'smooth' });
-});
+/* ===== DESKTOP WHEEL SCROLL ===== */
+timeline.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  if (e.deltaY > 0 && currentIndex < eras.length - 1) currentIndex++;
+  else if (e.deltaY < 0 && currentIndex > 0) currentIndex--;
+  updatePositions();
+}, { passive: false });
 
-/* ===== MOBILE: CONTROLLED SWIPE ===== */
-
-let currentIndex = 0;
+/* ===== MOBILE SWIPE CONTROL ===== */
 let startX = 0;
-let isSwiping = false;
-
-const screens = document.querySelectorAll('.era');
-const maxIndex = screens.length - 1;
-
-timeline.addEventListener('touchstart', (e) => {
+timeline.addEventListener('touchstart', e => {
   startX = e.touches[0].clientX;
-  isSwiping = true;
 }, { passive: true });
 
-timeline.addEventListener('touchend', (e) => {
-  if (!isSwiping) return;
-
+timeline.addEventListener('touchend', e => {
   const endX = e.changedTouches[0].clientX;
-  const deltaX = endX - startX;
+  const delta = endX - startX;
+  const threshold = 50;
 
-  const threshold = 50; // минимальная длина свайпа
+  if (delta < -threshold && currentIndex < eras.length - 1) currentIndex++;
+  if (delta > threshold && currentIndex > 0) currentIndex--;
 
-  if (deltaX < -threshold && currentIndex < maxIndex) {
-    currentIndex++;
-  } else if (deltaX > threshold && currentIndex > 0) {
-    currentIndex--;
-  }
-
-  timeline.scrollTo({
-    left: currentIndex * timeline.clientWidth,
-    behavior: 'smooth'
-  });
-
-  isSwiping = false;
+  updatePositions();
 });
+
+/* ===== INITIALIZE ===== */
+updatePositions();
