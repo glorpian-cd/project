@@ -1,8 +1,4 @@
 const timeline = document.querySelector('.timeline');
-timeline.scrollLeft = 0;
-timeline.addEventListener('scroll', () => {
-  timeline.scrollLeft = 0;
-});
 const eras = document.querySelectorAll('.era');
 const timelineItems = document.querySelectorAll('.timeline-item');
 const progressBar = document.querySelector('.progress-bar');
