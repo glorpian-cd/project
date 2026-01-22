@@ -1,21 +1,83 @@
 const timeline = document.querySelector('.timeline');
 const eras = document.querySelectorAll('.era');
-const startBtn = document.getElementById('startBtn');
+const timelineItems = document.querySelectorAll('.timeline-item');
+const progressBar = document.querySelector('.progress-bar');
+const startButton = document.querySelector('.start-button');
 
-/* ===== THEME SWITCH ===== */
-timeline.addEventListener('scroll', () => {
-  const index = Math.round(timeline.scrollTop / window.innerHeight);
-  const era = eras[index];
-  if (!era) return;
+let currentIndex = 0;
 
-  const theme = era.dataset.theme;
-  document.body.className = theme ? `theme-${theme}` : '';
-});
+/* ===== INITIALIZE POSITIONS ===== */
+function updatePositions() {
+  eras.forEach((era, i) => {
+    era.classList.remove('active', 'prev', 'next');
+    if (i === currentIndex) era.classList.add('active');
+    else if (i === currentIndex - 1) era.classList.add('prev');
+    else if (i === currentIndex + 1) era.classList.add('next');
+  });
+
+  updateProgress();
+  updateTheme();
+  updateTimelineItems();
+}
+
+/* ===== PROGRESS BAR ===== */
+function updateProgress() {
+  const percent = (currentIndex / (eras.length - 1)) * 100;
+  progressBar.style.width = percent + '%';
+}
+
+/* ===== TOP TIMELINE ITEMS ===== */
+function updateTimelineItems() {
+  timelineItems.forEach(item => {
+    item.classList.toggle('active', Number(item.dataset.index) === currentIndex);
+  });
+}
+
+/* ===== THEMES ===== */
+const themes = ['arpanet', 'networks', 'www', 'web2', 'mobile', 'modern'];
+
+function updateTheme() {
+  document.body.className = 'theme-' + themes[currentIndex];
+}
 
 /* ===== START BUTTON ===== */
-startBtn.addEventListener('click', () => {
-  timeline.scrollTo({
-    top: window.innerHeight,
-    behavior: 'smooth'
+startButton?.addEventListener('click', () => {
+  currentIndex = 0;
+  updatePositions();
+});
+
+/* ===== TOP TIMELINE CLICK ===== */
+timelineItems.forEach(item => {
+  item.addEventListener('click', () => {
+    currentIndex = Number(item.dataset.index);
+    updatePositions();
   });
 });
+
+/* ===== DESKTOP WHEEL SCROLL ===== */
+timeline.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  if (e.deltaY > 0 && currentIndex < eras.length - 1) currentIndex++;
+  else if (e.deltaY < 0 && currentIndex > 0) currentIndex--;
+  updatePositions();
+}, { passive: false });
+
+/* ===== MOBILE SWIPE CONTROL ===== */
+let startX = 0;
+timeline.addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+}, { passive: true });
+
+timeline.addEventListener('touchend', e => {
+  const endX = e.changedTouches[0].clientX;
+  const delta = endX - startX;
+  const threshold = 50;
+
+  if (delta < -threshold && currentIndex < eras.length - 1) currentIndex++;
+  if (delta > threshold && currentIndex > 0) currentIndex--;
+
+  updatePositions();
+});
+
+/* ===== INITIALIZE ===== */
+updatePositions();
