@@ -10,39 +10,32 @@ html, body {
   font-family: system-ui, sans-serif;
 }
 
-/* ===== TIMELINE ===== */
+/* ===== SCROLL CONTAINER ===== */
 .timeline {
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-snap-type: y mandatory;
 }
 
 /* ===== ERA ===== */
 .era {
   height: 100vh;
-  width: 100%;
   scroll-snap-align: start;
-  padding: 100px 24px 40px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  padding: 40px;
 }
 
-.era-content {
-  max-width: 900px;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+/* ===== CONTENT ===== */
+.content {
+  max-width: 600px;
   text-align: center;
-}
-
-.era-image img {
-  width: 100%;
-  border-radius: 16px;
 }
 
 h1 {
   font-size: 32px;
+  margin-bottom: 16px;
 }
 
 p {
@@ -56,8 +49,8 @@ p {
   color: white;
 }
 
-.start-button {
-  margin-top: 20px;
+#startBtn {
+  margin-top: 24px;
   padding: 14px 32px;
   border-radius: 30px;
   border: none;
@@ -65,10 +58,33 @@ p {
   font-weight: bold;
 }
 
-/* ===== THEMES ===== */
-.theme-arpanet { background: #000; color: #00ff00; }
-.theme-networks { background: #0b3d2e; color: #e0ffe9; }
-.theme-www { background: #e5e5e5; color: #000; }
-.theme-web2 { background: #1e90ff; color: #fff; }
-.theme-mobile { background: #fff; color: #111; }
-.theme-modern { background: #0f172a; color: #e5e7eb; }
+/* ===== THEMES PER ERA ===== */
+.era[data-theme="arpanet"] {
+  background: #000;
+  color: #00ff00;
+}
+
+.era[data-theme="networks"] {
+  background: #0b3d2e;
+  color: #e0ffe9;
+}
+
+.era[data-theme="www"] {
+  background: #e5e5e5;
+  color: #000;
+}
+
+.era[data-theme="web2"] {
+  background: #1e90ff;
+  color: #fff;
+}
+
+.era[data-theme="mobile"] {
+  background: #ffffff;
+  color: #111;
+}
+
+.era[data-theme="modern"] {
+  background: #0f172a;
+  color: #e5e7eb;
+}
