@@ -18,6 +18,10 @@ function updatePositions() {
   updateProgress();
   updateTheme();
   updateTimelineItems();
+  timeline.scrollTo({
+  left: currentIndex * window.innerWidth,
+  behavior: 'smooth'
+});
 }
 
 /* ===== PROGRESS BAR ===== */
@@ -88,9 +92,6 @@ timeline.addEventListener('scroll', () => {
     currentIndex = clampedIndex;
     updatePositions();
   }
-
-  // Жёстко возвращаем скролл в допустимые границы
-  timeline.scrollLeft = currentIndex * window.innerWidth;
 });
 
 /* ===== INITIALIZE ===== */
