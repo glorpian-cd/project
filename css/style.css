@@ -87,3 +87,15 @@ html, body {
   font-size: 16px;
   font-weight: bold;
 }
+
+/* ===== APPEAR ANIMATION ===== */
+.era {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.era.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
