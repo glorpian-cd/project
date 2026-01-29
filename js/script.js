@@ -79,5 +79,19 @@ timeline.addEventListener('touchend', e => {
   updatePositions();
 });
 
+timeline.addEventListener('scroll', () => {
+  const maxIndex = eras.length - 1;
+  const rawIndex = timeline.scrollLeft / window.innerWidth;
+  const clampedIndex = Math.max(0, Math.min(maxIndex, Math.round(rawIndex)));
+
+  if (clampedIndex !== currentIndex) {
+    currentIndex = clampedIndex;
+    updatePositions();
+  }
+
+  // Жёстко возвращаем скролл в допустимые границы
+  timeline.scrollLeft = currentIndex * window.innerWidth;
+});
+
 /* ===== INITIALIZE ===== */
 updatePositions();
