@@ -9,7 +9,6 @@ html, body {
   font-family: system-ui, sans-serif;
 }
 
-/* ===== TIMELINE ===== */
 .timeline {
   height: 100vh;
   overflow-y: auto;
@@ -17,7 +16,6 @@ html, body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* ===== ERA ===== */
 .era {
   height: 100vh;
   padding: 60px 24px;
@@ -42,7 +40,6 @@ html, body {
   line-height: 1.6;
 }
 
-/* ===== THEMES ===== */
 .era[data-theme="intro"] {
   background: linear-gradient(135deg, #1e3c72, #2a5298);
   color: white;
@@ -88,7 +85,6 @@ html, body {
   font-weight: bold;
 }
 
-/* ===== APPEAR ANIMATION ===== */
 .era {
   opacity: 0;
   transform: translateY(30px);
@@ -100,19 +96,16 @@ html, body {
   transform: translateY(0);
 }
 
-/* ===== ERA CONTENT LAYOUT ===== */
 .era-content {
   display: flex;
   gap: 24px;
   align-items: center;
 }
 
-/* TEXT */
 .era-text {
   flex: 1;
 }
 
-/* IMAGE */
 .era-image {
   flex: 1;
 }
@@ -123,7 +116,6 @@ html, body {
   object-fit: cover;
 }
 
-/* ===== MOBILE OPTIMIZATION ===== */
 @media (max-width: 768px) {
   .era-content {
     flex-direction: column;
@@ -134,33 +126,26 @@ html, body {
   }
 }
 
-/* ===== TYPOGRAPHY (MOBILE FIRST) ===== */
-
-/* Intro title */
 .era h1 {
   font-size: clamp(24px, 6vw, 32px);
   margin-bottom: 16px;
 }
 
-/* Era titles */
 .era h2 {
   font-size: clamp(20px, 5.5vw, 26px);
   margin-bottom: 12px;
 }
 
-/* Paragraphs */
 .era p {
   font-size: 14px;
   line-height: 1.45;
 }
 
-/* Intro text */
 .intro p {
   font-size: 16px;
   line-height: 1.5;
 }
 
-/* Layout tightening */
 .era {
   padding: 48px 20px;
 }
