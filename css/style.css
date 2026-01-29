@@ -99,3 +99,37 @@ html, body {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ===== ERA CONTENT LAYOUT ===== */
+.era-content {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+/* TEXT */
+.era-text {
+  flex: 1;
+}
+
+/* IMAGE */
+.era-image {
+  flex: 1;
+}
+
+.era-image img {
+  width: 100%;
+  border-radius: 14px;
+  object-fit: cover;
+}
+
+/* ===== MOBILE OPTIMIZATION ===== */
+@media (max-width: 768px) {
+  .era-content {
+    flex-direction: column;
+  }
+
+  .era-image {
+    margin-top: 20px;
+  }
+}
