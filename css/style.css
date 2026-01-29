@@ -133,3 +133,34 @@ html, body {
     margin-top: 20px;
   }
 }
+
+/* ===== TYPOGRAPHY (MOBILE FIRST) ===== */
+
+/* Intro title */
+.era h1 {
+  font-size: clamp(24px, 6vw, 32px);
+  margin-bottom: 16px;
+}
+
+/* Era titles */
+.era h2 {
+  font-size: clamp(20px, 5.5vw, 26px);
+  margin-bottom: 12px;
+}
+
+/* Paragraphs */
+.era p {
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+/* Intro text */
+.intro p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Layout tightening */
+.era {
+  padding: 48px 20px;
+}
